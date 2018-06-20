@@ -6,7 +6,10 @@ class History
 	def history
 		File.open("history.txt", "w+") { |io| @history.each { |e| io.puts(e) } }
 		a = File.open("history.txt", "r")
-		puts "History : "
+		puts "==========================="
+		puts "           History "
+		puts "==========================="
+		puts "\n"
 		i = 1
 		a.each do |b|
 			puts "#{i}. #{b}"

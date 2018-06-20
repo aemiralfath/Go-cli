@@ -29,11 +29,15 @@ class Maps2
 			end
 		end
 
+		puts "==============================="
+		puts "             Route"
+		puts "==============================="
+		puts "\n"
 		@arr2[@Tawal[0]][@Tawal[1]] = "p"
 		@arr2[@tujuan[0]][@tujuan[1]] = "x"
-		@arr2.each do |a|
-			print a
-			print "\n"
-		end
+		@arr2.each {|a|print a;print "\n"}
+
+		puts "\n"
+		puts "'#' : route, 'x' : destination"
 	end
 end

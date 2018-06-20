@@ -65,7 +65,6 @@ class Go_cli
 
 			#split line
 			vars = line.split(" ")
-			puts "#{vars[0]} = #{vars[1]}"
 
 			#initialize @n, @x, @y with if statement
 			if vars[0] == "n"

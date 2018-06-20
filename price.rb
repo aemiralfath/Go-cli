@@ -1,25 +1,30 @@
 require_relative "history"
-require_relative "maps2"
+require_relative "confirm"
 require_relative "go-ride"
+require "date"
+
 class Price
+	
 	def initialize(arr,names,history)
 		@arr = arr
 		@names = names
 		@history = history
 	end
-	def price(i)
+	
+	def price(i,z,tawal)
+		#initialize
 		@i = i
 		@price = 300
 		@tujuan = nil
-		@Tawal = nil
+		@Tawal = tawal
+		@z = z
+		
 
-		#for searching @tujuan and @Tawal coordinate
+		#for searching @tujuan coordinate
 		for i in 0...@arr.length
 			for j in 0...@arr.length
 				if @arr[i][j] == "x"
 					@tujuan = [i,j]
-				elsif @arr[i][j] == "p"
-					@Tawal = [i,j]
 				end
 			end
 		end
@@ -50,50 +55,55 @@ class Price
 			end
 		end
 		
-
+		#price
 		if @i==0
+
+			#initialize
 			@all_price = Array.new
 			@all_unit = Array.new
 			@all_tujuan = Array.new
+			@temp = nil
 
+			#assign
 			@all_tujuan << @tujuan
 			@all_unit << @unit
 			@total_price = @unit*@price
 			@all_price << @total_price
+			@temp = @Tawal
 
-			puts "4. The price from your location #{@Tawal} to #{@tujuan} is #{@total_price} (#{@unit} unit)"
-			puts "5. Yout Route: "
-			Maps2.new(@arr,@Tawal,@tujuan).maps2
+			#get all value
+			@tmpstr = ""
+			@all_tujuan.each { |e|@tmpstr += "#{e}->" }
 
-			@arr[@Tawal[0]][@Tawal[1]] = "."
-			@arr[@tujuan[0]][@tujuan[1]] = "p"
+			#print information
+			puts "Position        : #{@Tawal}"
+			puts "Destination     : #{@tujuan}"
+			puts "Fare            : #{@total_price} (#{@unit} unit)"
+			puts "\n"
 			
-			@str = "Order from Coordinate #{@Tawal} to #{@tujuan} by #{@names} with the  price is #{@total_price} (#{@unit} unit)"
-			@history << @str
 		else
-			@all_tujuan << @tujuan
-			@all_unit << @unit
-			@total_price = @unit*@price
-			@all_price << @total_price
+			#initialize
 			@total = 0
 			@tunit = 0
 
+			#assign
+			@all_unit << @unit
+			@total_price = @unit*@price
+			@all_price << @total_price
+			@all_tujuan << @tujuan
+			
+			#get all value
 			@all_price.each{|e| @total+=e}
 			@all_unit.each { |e| @tunit +=e  }
+			@tmpstr = ""
+			@all_tujuan.each { |e|@tmpstr += "#{e}->" }
 
-			@tmpstr = " "
-			@all_tujuan.each { |e|@tmpstr += " to #{e}" }
-			@str = "4. The price from your location #{@Tawal}(#{@unit} unit)"+@tmpstr+" is #{@total} (#{@tunit} unit)\n"
-			print @str
-			puts "5. Yout Route: "
-			Maps2.new(@arr,@Tawal,@tujuan).maps2
-
-			@arr[@Tawal[0]][@Tawal[1]] = "."
-			@arr[@tujuan[0]][@tujuan[1]] = "p"
-			
-			@str = "Order from Coordinate #{@Tawal} to #{@tujuan} by #{@names} with the  price is #{@total_price} (#{@unit} unit)"
-			@history << @str.sub("4. The price","Order")
+			#print information
+			puts "Position        : #{@temp}"
+			puts "Destination     : #{@tmpstr}"
+			puts "Fare            : #{@total} (#{@tunit} unit)"
+			puts "\n"
 		end
-		
+		confirm(@arr,@z,@Tawal,@tujuan)
 	end
 end

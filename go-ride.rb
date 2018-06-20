@@ -22,9 +22,10 @@ class Go_ride
 			
 			if @i == 0
 				c = ClosestD.new(@arr,@history)
-				c.driver
+				c.driver(@i)
 			else
-				c.driver
+				puts "hai"
+				c.driver(@i)
 			end
 
 			print "Your Journey is completed, finish? (y/n): "

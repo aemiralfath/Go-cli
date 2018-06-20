@@ -7,10 +7,13 @@ class Price
 		@names = names
 		@history = history
 	end
-	def price
+	def price(i)
+		@i = i
 		@price = 300
 		@tujuan = nil
 		@Tawal = nil
+
+		#for searching @tujuan and @Tawal coordinate
 		for i in 0...@arr.length
 			for j in 0...@arr.length
 				if @arr[i][j] == "x"
@@ -21,6 +24,8 @@ class Price
 			end
 		end
 
+
+		#route for user to destination
 		@unit = 0
 		if @Tawal[0]< @tujuan[0]
 			
@@ -45,15 +50,50 @@ class Price
 			end
 		end
 		
-		@total_price = @unit*@price
-		puts "4. The price from your location #{@Tawal} to #{@tujuan} is #{@total_price} (#{@unit} unit)"
-		puts "5. Yout Route: "
-		Maps2.new(@arr,@Tawal,@tujuan).maps2
 
-		@arr[@Tawal[0]][@Tawal[1]] = "."
-		@arr[@tujuan[0]][@tujuan[1]] = "p"
+		if @i==0
+			@all_price = Array.new
+			@all_unit = Array.new
+			@all_tujuan = Array.new
+
+			@all_tujuan << @tujuan
+			@all_unit << @unit
+			@total_price = @unit*@price
+			@all_price << @total_price
+
+			puts "4. The price from your location #{@Tawal} to #{@tujuan} is #{@total_price} (#{@unit} unit)"
+			puts "5. Yout Route: "
+			Maps2.new(@arr,@Tawal,@tujuan).maps2
+
+			@arr[@Tawal[0]][@Tawal[1]] = "."
+			@arr[@tujuan[0]][@tujuan[1]] = "p"
+			
+			@str = "Order from Coordinate #{@Tawal} to #{@tujuan} by #{@names} with the  price is #{@total_price} (#{@unit} unit)"
+			@history << @str
+		else
+			@all_tujuan << @tujuan
+			@all_unit << @unit
+			@total_price = @unit*@price
+			@all_price << @total_price
+			@total = 0
+			@tunit = 0
+
+			@all_price.each{|e| @total+=e}
+			@all_unit.each { |e| @tunit +=e  }
+
+			@tmpstr = " "
+			@all_tujuan.each { |e|@tmpstr += " to #{e}" }
+			@str = "4. The price from your location #{@Tawal}(#{@unit} unit)"+@tmpstr+" is #{@total} (#{@tunit} unit)\n"
+			print @str
+			puts "5. Yout Route: "
+			Maps2.new(@arr,@Tawal,@tujuan).maps2
+
+			@arr[@Tawal[0]][@Tawal[1]] = "."
+			@arr[@tujuan[0]][@tujuan[1]] = "p"
+			
+			@str = "Order from Coordinate #{@Tawal} to #{@tujuan} by #{@names} with the  price is #{@total_price} (#{@unit} unit)"
+			@history << @str.sub("4. The price","Order")
+		end
 		
-		@str = "Order from Coordinate #{@Tawal} to #{@tujuan} by #{@names} with the  price is #{@total_price} (#{@unit} unit)"
-		@history << @str
 	end
 end

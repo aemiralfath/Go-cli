@@ -1,4 +1,5 @@
-require_relative "go-cli"
+require_relative "go-cli" #import class Go_cli
+
 class Main
 	def mains
 		puts "            COMPFEST X - GO-JEK"
@@ -10,7 +11,11 @@ class Main
 		puts "       IIIIIII     IIIIIIII    II     II"
 		puts "=============================================="
 		puts "         SOFTWARE ENGINEERING ACADEMY"
+
+		#infinite loop
 		while true do
+
+			#menu for which execute program
 			puts "Execute Program by :"
 			puts "1. Without Parameter"
 			puts "2. With 3 Parameter"
@@ -18,9 +23,13 @@ class Main
 			puts "0. Exit"
 			print "Input: "
 			pilihan = gets.chomp
+
+			#without parameter
 			if pilihan == "1"
-				logo
-				a = Go_cli.new
+				logo 
+				Go_cli.new
+
+			#with 3 parameter
 			elsif pilihan == "2"
 				print "Input size map (n): "
 				n = gets.chomp.to_i
@@ -29,17 +38,24 @@ class Main
 				print "input your coordinate (y): "
 				y = gets.chomp.to_i
 				logo
-				a = Go_cli.new(n,x,y)
+				Go_cli.new(n,x,y)
+
+			#with file	
 			elsif pilihan == "3"
 				logo
-				a = Go_cli.new(File.open("input.txt", "r"))
+				Go_cli.new(File.open("input.txt", "r"))
+
+			#to exit the program execute menu	
 			elsif pilihan == "0"
 				puts "Goodbye!"
 				break
+
+			#if user wrong input	
 			else
 				puts "wrong input"	
 			end
 		end
+		#end of infinite loop
 	end
 
 	def logo
@@ -53,4 +69,6 @@ class Main
 		puts "=============================================="
 	end
 end
+
+#to run the main program
 Main.new.mains

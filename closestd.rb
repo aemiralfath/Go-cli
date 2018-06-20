@@ -8,7 +8,8 @@ class ClosestD
 		@arr = arr
 		@history = history
 	end
-	def driver
+	def driver(i)
+		@i = i
 		@drv = Array.new
 		@kor = Array.new
 		for i in 0...@arr.length
@@ -25,11 +26,20 @@ class ClosestD
 			@y = (v[1]-@korpass[1]).abs
 			@kor << Math.sqrt((@x**2)+(@y**2))
 		end	
-
-		@names = ClosestD.driver_name
-		puts "2. Your driver name is #{@names}"
-		@z = @kor.rindex(@kor.min)
-		puts "3. Your driver position is on Coordinate #{@drv[@z]} please wait until grab you"
-		Price.new(@arr,@names,@history).price
+		if @i==0
+			@names = ClosestD.driver_name
+			@motor = ClosestD.driver_motor
+			@nopol = ClosestD.driver_nopol
+			puts "2. Your driver name is #{@names} with #{@motor} (#{@nopol})"
+			@z = @kor.rindex(@kor.min)
+			puts "3. Your driver position is on Coordinate #{@drv[@z]} please wait until grab you"
+			@ps = Price.new(@arr,@names,@history)
+			@ps.price(@i)
+		else
+			puts "2. Your driver name is #{@names} with #{@motor} (#{@nopol})"
+			puts "3. Your driver is already here"
+			@ps.price(@i)
+		end
+		
 	end
 end

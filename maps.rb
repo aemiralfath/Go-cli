@@ -4,7 +4,6 @@ class Maps
 		@n = n
 	end
 	def maps
-		i = 0
 		puts "\n"
 		puts "Map :"
 		@arr.each {|a| print a;puts "\n"}

@@ -34,7 +34,8 @@ class Go_ride
 			@x = xy[0].to_i
 			@y = xy[1].to_i
 
-			 
+			
+
 			if koordinat.include?(",") && !(@x >= @arr[0].length) && !(@y >= @arr[0].length)
 				@arr[@x][@y] = "x"
 				

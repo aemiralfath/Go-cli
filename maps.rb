@@ -10,7 +10,8 @@ class Maps
 		puts "============================================"
 		puts "\n"
 
-		@arr.each {|a| print a;puts "\n"}
+		@arr.each {|a| print a;puts "\n"} #print maps
+
 		puts "\n"
 		puts "'d' = Driver, 'p'= passanger"
 		puts "============================================"

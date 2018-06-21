@@ -32,13 +32,14 @@ class Tools
 	#Go-cli menu
 	def menu
 		@history = Array.new
+		File.open("history.txt", "w+") { |io| @history.each { |e| io.puts(e) } }
 
 		#infinite loop
 		while true
 			puts "\n"
 			logo
 			puts "1. Show Map"
-			puts "2. Order Go-ride"
+			puts "2. Order Go-Ride"
 			puts "3. History"
 			puts "0. Exit Go-Cli"
 			print "input: "
@@ -48,6 +49,9 @@ class Tools
 			if pil == "1"
 				system "clear"
 				Maps.new(@arr,@n).maps
+				print "Press any key to back to menu "
+				menus = gets.chomp
+				system "clear"
 			#order go-ride
 			elsif pil == "2"
 				system "clear"
@@ -57,6 +61,10 @@ class Tools
 			elsif pil == "3"
 				system "clear"
 				History.new(@history).history
+				puts "\n"
+				print "Press any key to back to menu "
+				menus = gets.chomp
+				system "clear"
 			#exit
 			elsif pil == "0"
 				system "clear"

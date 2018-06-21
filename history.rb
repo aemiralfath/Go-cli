@@ -4,8 +4,13 @@ class History
 		@history = history
 	end
 	def history
+		#open and write a history
 		File.open("history.txt", "w+") { |io| @history.each { |e| io.puts(e) } }
+
+		#read file
 		a = File.open("history.txt", "r")
+
+		#display a file
 		puts "==========================="
 		puts "           History "
 		puts "==========================="

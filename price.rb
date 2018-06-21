@@ -1,3 +1,4 @@
+#import class
 require_relative "history"
 require_relative "confirm"
 require_relative "go-ride"
@@ -12,12 +13,15 @@ class Price
 	end
 	
 	def price(i,z,tawal)
+		
 		#initialize
 		@i = i
 		@price = 300
 		@tujuan = nil
 		@Tawal = tawal
 		@z = z
+		@fare = 0
+		@range = 0
 		
 
 		#for searching @tujuan coordinate
@@ -80,7 +84,8 @@ class Price
 			puts "Destination     : #{@tujuan}"
 			puts "Fare            : #{@total_price} (#{@unit} unit)"
 			puts "\n"
-			
+			@fare = @total_price
+			@range = @unit
 		else
 			#initialize
 			@total = 0
@@ -103,7 +108,9 @@ class Price
 			puts "Destination     : #{@tmpstr}"
 			puts "Fare            : #{@total} (#{@tunit} unit)"
 			puts "\n"
+			@fare = @total
+			@range = @tunit
 		end
-		confirm(@arr,@z,@Tawal,@tujuan)
+		confirm(@arr,@z,@Tawal,@tujuan,@fare,@range)
 	end
 end

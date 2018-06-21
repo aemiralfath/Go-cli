@@ -54,14 +54,20 @@ class ClosestD
 
 			#to method price
 			@ps = Price.new(@arr,@names,@history)
+
+			#set value finish from method price
 			@finish = @ps.price(@i,@drv[@z],@korpass)
 		else
 			#puts driver information
 			puts "Driver name     : #{@names}"
 			puts "Driver bike     : #{@motor} (#{@nopol})"
 			puts "Driver position : in your position"
+
+			#set value finish from method price
 			@finish = @ps.price(@i,@korpass,@korpass)
 		end
+
+		#return value finish
 		@finish
 	end
 end

@@ -39,5 +39,6 @@ class Maps2
 
 		puts "\n"
 		puts "'#' : route, 'x' : destination"
+		puts "================================"
 	end
 end

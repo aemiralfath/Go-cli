@@ -2,7 +2,7 @@ require_relative "tools" #import class Tools
 require_relative "randoms"#impotr module Randoms
 
 class Go_cli
-	include Randoms #inclue randoms to class Go_cli
+	include Randoms #include randoms to class Go_cli
 
 	#setter and getter
 	attr_accessor :n

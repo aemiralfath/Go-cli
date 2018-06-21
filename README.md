@@ -1,10 +1,10 @@
-#Application Go-cli - SEA COMPFEST
+# Application Go-cli - SEA COMPFEST
 The second stage final assignment for COMPFEST-Software Engineering Academy
 
-##Start Go-cli Application
+## Start Go-cli Application
 The main file is main.rb
 
-###Go-cli application is run by 3 ways:
+### Go-cli application is run by 3 ways:
 1. without parameter
 2. with 3 parameter
 3. with file parameter
@@ -105,7 +105,7 @@ This will generate :
 - specified user coordinate
 
 ### When GO-cli app is running
-####1. *show map*
+#### 1. *show map*
 - when user choose this option, your app will display the map and show where user and driver are.
 
 ```
@@ -126,7 +126,7 @@ Press any key to back to menu
 ```
 *Go-cli maps*
 
-####2. *Order Go-Ride* 
+#### 2. *Order Go-Ride* 
 - when user choose this option your display go-cli maps, and app will ask specified coordinate destination. After that, the app will allocate the nearest driver to user and display information of the trip, the route to destination, as well as the price estimates. User must confirm the order with (y/n), if no user will back to go-cli menu.
 
 - Display when user input Order Go-Ride
@@ -273,7 +273,7 @@ format of history : Order from Coordinate (user) to (destination) -> by (driver 
 *when user choose this option, app will stop.*
 
 
-##Progress:
+## Progress:
 1. Analyze Class needed:
     - Main    > Main program , initialize parameter program
     - Go_cli  > Generate maps, assign driver position and passanger position
@@ -366,7 +366,7 @@ format of history : Order from Coordinate (user) to (destination) -> by (driver 
     - read a file
     - display history in file
 
-##Assumptions and Design
+## Assumptions and Design
 
 - Name and Go-pay in Go-cli menu is still UI right now, maybe i create class login later
 
